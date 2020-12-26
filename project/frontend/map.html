@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: black;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Add padding to containers */
+    .container {
+        padding: 16px;
+        background-color: white;
+    }
+
+    /* Full-width input fields */
+    input[type=text],
+    input[type=password] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+    }
+
+    input[type=text]:focus,
+    input[type=password]:focus {
+        background-color: #ddd;
+        outline: none;
+    }
+
+    /* Overwrite default styles of hr */
+    hr {
+        border: 1px solid #f1f1f1;
+        margin-bottom: 25px;
+    }
+
+    /* Set a style for the submit button */
+    .registerbtn {
+        background-color: #409ace;
+        color: white;
+        padding: 16px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 49%;
+        opacity: 0.9;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .registerbtn2 {
+        background-color: #5a5658;
+        color: white;
+        padding: 16px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+    }
+
+    .registerbtn:hover {
+        opacity: 1;
+    }
+
+    /* Add a blue text color to links */
+    a {
+        color: dodgerblue;
+    }
+
+    /* Set a grey background color and center the text of the "sign in" section */
+    .signin {
+        background-color: #f1f1f1;
+        text-align: center;
+    }
+
+    #mapid { 
+    height: 100px; 
+    margin-left: auto;
+    margin-right: auto;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lyrics App</title>
+    <link rel="icon" href="music.jpeg" type="image/x-icon">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="icons.js"></script>
+    <script src="create_map.js"></script>
+    <script>
+        window.addEventListener("DOMContentLoaded", function () {
+            init_map();
+        }, false);
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <form name="insertArtist" method="post">
+
+            <label for="artist-name"><b>Artist</b></label>
+            <input type="text" placeholder="Enter Artist" name="artist-name" id="artist-name" required>
+            <label for="k"><b>Number of songs (between 1 and 5)</b></label>
+            <input type="number" name="k" id="k" min="1" max="5" required>
+            <br />
+
+            <button type="button" class="registerbtn" value="Submit"
+                onclick="add_markers(document.getElementById('artist-name').value);">Submit</button>
+            <button type="button" class="registerbtn" value="Clear Map" onclick="ClearMap()">Clear Map</button>
+
+        </form>
+        <div id="mapid" class="map" style="width: 1800px; height: 900px; position: relative; outline: none;"></div>
+        <button type="button" class="registerbtn2" onclick="location.href='home.html'">Back to main</button>
+    </div>
+</body>
+
+</html>
